@@ -14,10 +14,18 @@ pipeline {
                 }
             }
         }
+        
+        stage("Increment Version") {
+            steps {
+                script {
+                    gv.incrementMavenAppVersion()
+                }
+            }
+        }
+
         stage("Build Artifact") {
             steps {
                 script {
-                    echo "building jar"
                     gv.buildJar()
                 }
             }
@@ -25,7 +33,6 @@ pipeline {
         stage("Build Image") {
             steps {
                 script {
-                    echo "building image"
                     gv.buildImage()
                 }
             }
@@ -33,7 +40,6 @@ pipeline {
         stage("Deploy") {
             steps {
                 script {
-                    echo "deploying"
                     gv.deployApp()
                 }
             }
