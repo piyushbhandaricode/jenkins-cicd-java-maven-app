@@ -1,3 +1,4 @@
 .idea/*
 target
 java-maven-app.iml
+.vscode

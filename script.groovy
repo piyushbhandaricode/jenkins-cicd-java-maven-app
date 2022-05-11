@@ -28,6 +28,25 @@ def buildImage() {
 def deployApp() {
     echo 'deploying the application...'
 
-} 
+}
+
+def commitVersionUpdate() {
+    withCredentials([usernamePassword(credentialsId: 'gitlab-jenkins', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+        // Only for first time or set them once in the container
+        sh 'git config --global user.email "jenkins@example.com"'
+        sh 'git config --global user.name "Jenkins"'
+
+        
+        sh 'git status'
+        sh 'git branch'
+        sh 'git config --list'
+        
+        sh "git remote set-url origin https://${USER}:${PASS}@gitlab.com/piyush.bhandari/java-maven-app.git"
+        sh 'git add .'
+        sh 'git commit -m "ci: version bump"'
+        sh 'git push origin HEAD:jenkins-dockerhub'
+    }
+    
+}
 
 return this
