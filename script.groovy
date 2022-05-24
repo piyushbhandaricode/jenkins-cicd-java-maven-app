@@ -15,7 +15,7 @@ def incrementMavenAppVersion() {
     env.IMAGE_NAME = "$version-$BUILD_NUMBER"
 }
 
-def buildImage() {
+def buildDockerImage() {
     echo "building the docker image..."
 
     withCredentials([usernamePassword(credentialsId: 'jenkins-dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
@@ -27,6 +27,7 @@ def buildImage() {
 
 def deployApp() {
     echo 'deploying the application...'
+    
 
 }
 
