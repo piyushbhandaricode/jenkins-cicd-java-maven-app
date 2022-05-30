@@ -31,8 +31,9 @@ def deployApptoGCP() {
           sh '''
             gcloud version
             gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
-            gcloud compute zones list
             gcloud compute ssh gce-ubuntu --zone=us-central1-a
+
+            docker run -p 3080:3080 -d piyushbhandari/demo-app:3.4.0-11
             '''
     }
 
