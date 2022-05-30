@@ -34,7 +34,7 @@ def deployApptoGCP() {
             gcloud auth activate-service-account --key-file="$GLOBAL_CREDS"
             gcloud compute zones list
             gcloud compute ssh gce-ubuntu --zone=us-central1-a
-
+            
           '''
         }
       }
