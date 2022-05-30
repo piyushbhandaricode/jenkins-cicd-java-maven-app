@@ -27,15 +27,13 @@ def buildDockerImage() {
 
 def deployApptoGCP() {
     echo 'deploying the application...'
-    steps {
-        withCredentials([file(credentialsId: 'gcloud-creds', variable: 'GCLOUD_CREDS')]) {
+    withCredentials([file(credentialsId: 'gcloud-creds', variable: 'GCLOUD_CREDS')]) {
           sh '''
             gcloud version
             gcloud auth activate-service-account --key-file="$GCLOUD_CREDS"
             gcloud compute zones list
             gcloud compute ssh gce-ubuntu --zone=us-central1-a
-          '''
-        }
+            '''
     }
 
 }
