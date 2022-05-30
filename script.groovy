@@ -25,8 +25,19 @@ def buildDockerImage() {
     }
 } 
 
-def deployApp() {
+def deployApptoGCP() {
     echo 'deploying the application...'
+    steps {
+        withCredentials([file(credentialsId: 'global-creds', variable: 'GLOBAL_CREDS')]) {
+          sh '''
+            gcloud version
+            gcloud auth activate-service-account --key-file="$GLOBAL_CREDS"
+            gcloud compute zones list
+            gcloud compute ssh gce-ubuntu --zone=us-central1-a
+
+          '''
+        }
+      }
     
 
 }
