@@ -3,8 +3,8 @@ def gv
 pipeline {
     agent any
     environment {
-        CLOUDSDK_CORE_PROJECT='playground-s-11-62963bf6'
-        CLIENT_EMAIL='112268103611-compute@developer.gserviceaccount.com'
+        CLOUDSDK_CORE_PROJECT='playground-s-11-4c59ef6b'
+        CLIENT_EMAIL='752490910238-compute@developer.gserviceaccount.com'
     }
     tools {
         maven 'maven-3.8.5'
